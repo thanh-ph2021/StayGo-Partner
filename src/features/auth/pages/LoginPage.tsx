@@ -2,22 +2,29 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import "./LoginPage.css"
+import { login } from "../authActions"
+import useAppDispatch from "../../../hooks/useAppDispatch"
 
 const LoginPage = () => {
   const navigate = useNavigate()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const dispatch = useAppDispatch()
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Login with:", { email, password })
-    navigate("/app")
+    const result = await dispatch<any>(login({ email, password }))
+    if (result?.isSuccess) {
+      navigate("/")
+    } else {
+      alert("Đăng nhập thất bại: " + (result?.error || "Unknown error"))
+    }
   }
 
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleLogin}>
-        <h2>Host Login</h2>
+        <h2>StayGo Partner</h2>
 
         <div className="form-group">
           <label>Email</label>
@@ -31,9 +38,9 @@ const LoginPage = () => {
         </div>
 
         <div className="form-group">
-          <label>Password</label>
+          <label>Mật khẩu</label>
           <input
-            type="password"
+            type="mật khẩu"
             placeholder="••••••••"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -45,7 +52,12 @@ const LoginPage = () => {
           Đăng nhập
         </button>
 
-        <p className="login-note">Bạn chưa có tài khoản? Liên hệ admin để đăng ký.</p>
+        <p className="login-note">
+          Bạn chưa có tài khoản{' '}
+          <span className="signup-link" onClick={() => navigate('/signup')}>
+            Đăng ký ngay
+          </span>
+        </p>
       </form>
     </div>
   )

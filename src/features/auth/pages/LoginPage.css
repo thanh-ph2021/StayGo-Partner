@@ -61,3 +61,14 @@
   margin-top: 1rem;
   color: #555;
 }
+
+.signup-link {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.signup-link:hover {
+  color: darkblue;
+}

@@ -4,15 +4,25 @@ import RootLayout from "./root"
 import LoginPage from "../features/auth/pages/LoginPage"
 import HotelsPage from "../features/hotels/pages/HotelsPage"
 import DashboardPage from "../features/dashboard/pages/DashboardPage"
+import { RequireAuth } from "../components/RequireAuth"
+import SignupPage from "../features/auth/pages/SignupPage"
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/login",
     element: <LoginPage />,
   },
   {
-    path: "/app",
-    element: <RootLayout />,
+    path: "/signup",
+    element: <SignupPage />,
+  },
+  {
+    path: "/",
+    element: (
+      <RequireAuth>
+        <RootLayout />
+      </RequireAuth>
+    ),
     children: [
       {
         index: true,
