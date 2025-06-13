@@ -4,3 +4,8 @@ export const saveAuth = (token: string, user: UserModel) => {
   localStorage.setItem("token", token)
   localStorage.setItem("user", JSON.stringify(user))
 }
+
+export const removeAuth = () => {
+  localStorage.removeItem("token")
+  localStorage.removeItem("user")
+}

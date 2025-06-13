@@ -3,6 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 import type { UserModel } from '../../models/UserModel'
 import type { RootState } from '../../store/type'
+import { removeAuth } from '../../utils/localStorageUtils'
 
 interface AuthState {
     isAuthenticated: boolean
@@ -28,6 +29,7 @@ const authSlice = createSlice({
         logout: (state) => {
             state.isAuthenticated = false
             state.user = null
+            removeAuth()
         },
     },
 })

@@ -40,7 +40,7 @@ const LoginPage = () => {
         <div className="form-group">
           <label>Mật khẩu</label>
           <input
-            type="mật khẩu"
+            type="password"
             placeholder="••••••••"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
