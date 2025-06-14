@@ -10,6 +10,7 @@ import "./SignUpPage.css"
 const SignupPage = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const [isLoading, setIsLoading] = useState(false)
 
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -19,26 +20,33 @@ const SignupPage = () => {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (password !== confirmPassword) {
-      alert("Mật khẩu xác nhận không khớp!")
-      return
-    }
+    setIsLoading(true)
+    try {
+      if (password !== confirmPassword) {
+        alert("Mật khẩu xác nhận không khớp!")
+        return
+      }
 
-    const payload: RegisterRequest = {
-      fullName: name,
-      email,
-      password,
-      phone,
-      userRole: "Hotel Owner",
-      userRoleId: "031C56BE-B83D-40DA-9917-82BBCCD7F92C"
-    }
+      const payload: RegisterRequest = {
+        fullName: name,
+        email,
+        password,
+        phone,
+        userRole: "Hotel Owner",
+        userRoleId: "031C56BE-B83D-40DA-9917-82BBCCD7F92C"
+      }
 
-    const response = await dispatch<any>(register(payload))
+      const response = await dispatch<any>(register(payload))
 
-    if (response.isSuccess) {
-      navigate("/")
-    } else {
-      alert("Đăng ký thất bại: " + response.error)
+      if (response.isSuccess) {
+        navigate("/")
+      } else {
+        alert("Đăng ký thất bại: " + response.error)
+      }
+    } catch (error) {
+      alert("Đăng ký thất bại: " + error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -103,7 +111,11 @@ const SignupPage = () => {
         </div>
 
         <button type="submit" className="login-button">
-          Đăng ký
+          {isLoading ? (
+            <div className="spinner"></div>
+          ) : (
+            "Đăng ký"
+          )}
         </button>
 
         <p className="login-note">

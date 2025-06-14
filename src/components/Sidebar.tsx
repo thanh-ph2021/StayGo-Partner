@@ -7,7 +7,7 @@ import {
 const menuItems = [
   { to: "/", label: "Dashboard", icon: <Home size={20} /> },
   { to: "/reservation", label: "Reservation", icon: <Calendar size={20} /> },
-  { to: "/rooms", label: "Rooms", icon: <Bed size={20} /> },
+  { to: "/hotels", label: "Khách sạn", icon: <Bed size={20} /> },
   { to: "/messages", label: "Messages", icon: <MessageSquare size={20} />, hasNotification: true },
   { to: "/housekeeping", label: "Housekeeping", icon: <ClipboardList size={20} /> },
   { to: "/inventory", label: "Inventory", icon: <Box size={20} /> },

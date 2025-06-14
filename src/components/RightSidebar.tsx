@@ -50,7 +50,7 @@ const RightSidebar: React.FC = () => {
                   className="w-16 h-16 rounded-full border object-cover mb-2"
                 />
                 <p className="text-sm font-medium mb-1">{userCurrent?.email}</p>
-                <p className="text-lg font-semibold">{`Hi, ${userCurrent?.fullName}`}</p>
+                <p className="text-lg font-semibold">{`Chào, ${userCurrent?.fullName}`}</p>
               </div>
 
               <div className="flex mt-5 border-t pt-4 gap-2">
@@ -59,12 +59,12 @@ const RightSidebar: React.FC = () => {
                   className="flex-1 flex items-center justify-center gap-2 py-2 rounded-full bg-gray-100 hover:bg-gray-200 transition"
                 >
                   <LogOut size={16} />
-                  <span className="text-sm">Sign out</span>
+                  <span className="text-sm">Đăng xuất</span>
                 </button>
               </div>
 
               <div className="mt-4 text-xs text-gray-400 text-center">
-                <a href="#" className="hover:underline">Privacy Policy</a> · <a href="#" className="hover:underline">Terms of Service</a>
+                <a href="#" className="hover:underline">Chính sách quyền riêng tư</a> · <a href="#" className="hover:underline">Điều khoản dịch vụ</a>
               </div>
             </div>
           )}

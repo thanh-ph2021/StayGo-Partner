@@ -10,14 +10,22 @@ const LoginPage = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const dispatch = useAppDispatch()
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    const result = await dispatch<any>(login({ email, password }))
-    if (result?.isSuccess) {
-      navigate("/")
-    } else {
-      alert("Đăng nhập thất bại: " + (result?.error || "Unknown error"))
+    setIsLoading(true)
+    try {
+      const result = await dispatch<any>(login({ email, password }))
+      if (result?.isSuccess) {
+        navigate("/")
+      } else {
+        alert("Đăng nhập thất bại: " + (result?.error || "Unknown error"))
+      }
+    } catch (err) {
+      alert("Có lỗi xảy ra. Vui lòng thử lại.")
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -49,7 +57,11 @@ const LoginPage = () => {
         </div>
 
         <button type="submit" className="login-button">
-          Đăng nhập
+          {isLoading ? (
+            <div className="spinner"></div>
+          ) : (
+            "Đăng nhập"
+          )}
         </button>
 
         <p className="login-note">

@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom"
 
 import RootLayout from "./root"
 import LoginPage from "../features/auth/pages/LoginPage"
-import HotelsPage from "../features/hotels/pages/HotelsPage"
+import HotelsPage from "../features/hotel/HotelPage"
 import DashboardPage from "../features/dashboard/pages/DashboardPage"
 import { RequireAuth } from "../components/RequireAuth"
 import SignupPage from "../features/auth/pages/SignupPage"
